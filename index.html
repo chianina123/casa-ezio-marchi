@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Ezio Marchi</title>
+    
+    <!-- Add Google Font for Rustic Tuscan Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Amatic SC', cursive; /* Changed to match the title font */
+            background-color: #D5B93A;
+            color: #7C2E27;
+            margin: 0;
+            padding: 0;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #D5B93A;
+            border: 2px solid #C95A28;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-family: 'Amatic SC', cursive;
+            font-size: 2.5em;
+            color: #C95A28;
+        }
+
+        /* Main content styling */
+        main {
+            padding: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #D5B93A;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #C95A28;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #7C2E27;
+            font-weight: bold;
+        }
+
+        #image-gallery {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            padding: 10px;
+            background-color: #D5B93A; /* Match section background */
+        }
+
+        #image-gallery img {
+            margin: 10px;
+            width: 200px; /* Set your desired image width */
+            height: 150px; /* Set a specific height to reduce distortion */
+            object-fit: cover; /* Ensure the image maintains its aspect ratio and fills the box */
+            border-radius: 8px; /* No shadow on images */
+            cursor: pointer; /* Indicate clickable images */
+        }
+
+        /* Lightbox style */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        /* "How?" section */
+        .how {
+            font-size: 1.1em;
+            color: #7C2E27;
+            font-weight: 600;
+        }
+
+        /* Section wrapper */
+        .section-wrapper {
+            border: 2px solid #C95A28;
+            background-color: #D5B93A;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            h1, h2 {
+                font-size: 1.2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add header with rustic font -->
+    <header>
+        <h1>AIRBNB + History and Florentine Steak at the Birthplace of Ezio Marchi</h1>
+    </header>
+
+    <main>
+        <!-- Image Gallery Section -->
+        <div class="section-wrapper">
+            <div id="image-gallery"></div>
+        </div>
+
+        <div class="section-wrapper">
+            <p id="intro">My name is Anna and I am offering a unique experience that takes place in the birthplace of Ezio Marchi, the so-called 'father of Chianina,' who was the first to scientifically study the cattle breed in Italy. As a result of his work, today the 'bistecca alla Fiorentina' has become famous worldwide. You can enjoy a renowned steak for dinner and the story of his life and legacy, and you can also spend the night in the house where he was born and where his veterinarian father worked. Together, we can visit a Chianina cattle farm, where we will purchase our steaks from a specialized butcher. I will prepare a dinner for you that will be accompanied by plenty of local organic red wine and will conclude with delicious sweets and Vin Santo. It will be a true culinary and cultural journey into the heart of Tuscan tradition.</p>
+<p>Reach out to me at:</p>
+<p>Email: reaganna6@gmail.com</p>
+<p>Phone: +39 349 520 9005</p>
+        </div>
+    </main>
+
+    <!-- Lightbox for image zoom -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightbox-img" alt="Enlarged Image">
+    </div>
+
+    <script>
+        // JavaScript to dynamically add images to the gallery
+        const images = [
+            'image1.jpg', // Replace with your image filenames
+            'image2.jpg',
+            'image3.jpg',
+            'image4.jpg',
+            'image5.jpg',
+            'image6.jpg',
+            'image7.jpg',
+            'image8.jpg',
+        ];
+
+        const gallery = document.getElementById('image-gallery');
+
+        images.forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image; // Set the source to the image filename
+            imgElement.alt = 'Image'; // Optional alt text
+            imgElement.addEventListener('click', () => {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                lightboxImg.src = image; // Set the lightbox image source
+                lightbox.style.display = 'flex'; // Show the lightbox
+            });
+            gallery.appendChild(imgElement);
+        });
+
+        // Close lightbox when clicked
+        document.getElementById('lightbox').addEventListener('click', () => {
+            document.getElementById('lightbox').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
